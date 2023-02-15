@@ -117,6 +117,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.17.tgz#c5a1a4bfe1b57f0c3e61b29883525c6da3e5c091"
   integrity sha512-y+EHuSchhL7FjHgvQL/0fnnFmO4T1bhvWANX6gcnqTjtnKWbTvUMCpGnv2+t+31d7RzyEAYAd4u2fnIhHL6N/Q==
 
+"@sunrisecn/axios-abort@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@sunrisecn/axios-abort/-/axios-abort-1.0.1.tgz#9b313d249868a318f35f6c65f11244eb55662227"
+  integrity sha512-JV6Op3FM/RestPW6ztuYvdShwmFlH+FTOFhwPqTRTEuLKiKT4sQa9SHbbH6pEg60F6rxSWOHbsqVCUPvo/D+Nw==
+
 "@vitejs/plugin-vue@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-4.0.0.tgz#93815beffd23db46288c787352a8ea31a0c03e5e"

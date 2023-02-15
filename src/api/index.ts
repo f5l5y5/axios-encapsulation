@@ -1,32 +1,29 @@
 import Request from './request'
-import type { RequestConfig, IBaseRes } from './types'
+import { config } from './config'
+import type { ContentType } from 'axios'
+import type { IBaseRes, RequestSingleConfig, RequestConfig } from './types'
 
-const config: RequestConfig = {
-	baseURL: 'http://localhost:3000',
-	timeout: 1000 * 60 * 5,
-	interceptors: {
-		requestInterceptors: config => {
-			config.headers.new = 'new'
-			console.log('打印***实例化请求拦截器', config)
-			return config
-		},
-		responseInterceptors: response => {
-			console.log('打印***实例化响应拦截器')
-			return response
-		}
-	}
-}
-
+// =============   第一个请求    ===================
 const api = new Request(config)
 
-interface IReq<T, R> extends RequestConfig<IBaseRes<R>> {
-	data?: T
+// 将请求包一层 转换成 请求 响应的方式
+interface IReq<K, T> extends RequestConfig<IBaseRes<T>> {
+	data?: K
 }
 
-export const request = <D = any, T = any>(config: IReq<D, T>) => {
-	const { method = 'GET' } = config
-	if (method === 'get' || method === 'GET') {
-		config.params = config.data
-	}
-	return api.request<IBaseRes<T>>(config)
+export const request = <K = any, T = any>(config: IReq<K, T>): Promise<IBaseRes<T>> => {
+	return new Promise((resolve, reject) => {
+		const { method = 'GET' } = config
+		if (method === 'get' || method === 'GET') {
+			config.params = config.data
+		}
+		// config.headers?.['Content-Type'] = 'text/plain'
+		api.request<IBaseRes<T>>(config)
+			.then(res => {
+				resolve(res)
+			})
+			.catch(err => {
+				reject(err)
+			})
+	})
 }

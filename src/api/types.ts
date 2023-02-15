@@ -14,6 +14,10 @@ export interface RequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 	interceptors?: RequestInterceptors<T>
 }
 
+export interface RequestSingleConfig<T = AxiosResponse> extends InternalAxiosRequestConfig {
+	interceptors?: RequestInterceptors<T>
+}
+
 // 返回参数定义
 
 export interface IBaseRes<T = any> {

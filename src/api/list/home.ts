@@ -11,11 +11,16 @@ interface IGetRes {
 }
 
 export const getList = (data: IP) =>
-	request<IP, IGetRes>({
+	request<IP, number>({
 		url: '/getList',
 		method: 'get',
 		data,
 		interceptors: {
+			requestInterceptors: config => {
+				config.headers.single = 'outer'
+				console.log('打印***单个接口请求拦截', config)
+				return config
+			},
 			responseInterceptors: res => {
 				if (res.data) {
 					console.log('打印***单个接口响应拦截', res)
@@ -26,7 +31,7 @@ export const getList = (data: IP) =>
 	})
 
 export const postList = (data: IP) =>
-	request<IP, IGetRes>({
+	request<IP, number>({
 		url: '/postList',
 		method: 'post',
 		data
