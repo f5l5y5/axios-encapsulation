@@ -14,15 +14,15 @@ export interface RequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
 	interceptors?: RequestInterceptors<T>
 }
 
-export interface RequestSingleConfig<T = AxiosResponse> extends InternalAxiosRequestConfig {
-	interceptors?: RequestInterceptors<T>
-}
-
 // 返回参数定义
-
 export interface IBaseRes<T = any> {
 	code: number
 	data: T
 	msg: string
 	err: boolean
+}
+
+// 将请求包一层 转换成 请求 响应的方式
+export interface IReq<P, T> extends RequestConfig<IBaseRes<T>> {
+	data?: P
 }

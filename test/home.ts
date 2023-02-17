@@ -1,4 +1,7 @@
-import { request } from '../index'
+import setApiConfig from '../src/index'
+import { config } from './config'
+
+const request = setApiConfig(config)
 
 export interface IP {
 	name: string
