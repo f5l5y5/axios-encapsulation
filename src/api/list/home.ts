@@ -18,7 +18,7 @@ export const getList = (data: IP) =>
 		interceptors: {
 			requestInterceptors: config => {
 				config.headers.single = 'outer'
-				console.log('打印***单个接口请求拦截', config)
+				console.log('打印***单个最外层接口请求拦截', config)
 				return config
 			},
 			responseInterceptors: res => {
@@ -34,7 +34,20 @@ export const postList = (data: IP) =>
 	request<IP, number>({
 		url: '/postList',
 		method: 'post',
-		data
+		data,
+		interceptors: {
+			requestInterceptors: config => {
+				console.log('打印***单个接口请求拦截', config)
+				config.headers.single = 'outer'
+				return config
+			},
+			responseInterceptors: res => {
+				if (res.data) {
+					console.log('打印***单个接口响应拦截', res)
+				}
+				return res
+			}
+		}
 	})
 
 // // 重写返回类型

@@ -9,9 +9,18 @@ export const config: RequestConfig = {
 			console.log('打印***实例化请求拦截器', config)
 			return config
 		},
+		requestInterceptorsCatch: error => {
+			console.log(error, '===========')
+			// return Promise.reject(error)
+		},
 		responseInterceptors: response => {
 			console.log('打印***实例化响应拦截器', response)
 			return response
+		},
+		responseInterceptorsCatch: error => {
+			console.log('打印***实例化响应error', error)
+			// 将错误传递到上层
+			return Promise.reject(error)
 		}
 	}
 }
